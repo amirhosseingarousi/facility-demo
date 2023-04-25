@@ -15,7 +15,7 @@ public class LoanDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
-            session.save(loan);
+            session.persist(loan);
             transaction.commit();
         }
     }

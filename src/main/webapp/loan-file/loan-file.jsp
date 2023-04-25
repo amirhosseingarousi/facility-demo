@@ -28,7 +28,7 @@
                     <div class="form-group row">
                         <label for="customernumber" class="col-sm-3 col-form-label">Customer number</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" name="customerNumber" id="customernumber" placeholder="Customer number">
+                            <input type="text" class="form-control" value="${customer.number}" name="customerNumber" id="customernumber" placeholder="Customer number">
                         </div>
                         <button type="submit" name="confirm" value="confirm" class="btn btn-primary mb-2">Confirm</button>
                     </div>

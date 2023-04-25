@@ -2,7 +2,9 @@ package ir.dotin.facilitiesdemo.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "private_customer")
@@ -30,6 +32,12 @@ public class PrivateCustomer {
 
     @Column(name = "number")
     private String number;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "private_customer_loan",
+        joinColumns = @JoinColumn(name = "private_customer_id"),
+        inverseJoinColumns = @JoinColumn(name = "loan_id"))
+    private List<Loan> loans = new ArrayList<>();
 
     public PrivateCustomer() {
     }
@@ -115,5 +123,27 @@ public class PrivateCustomer {
 
     public void setNumber(String number) {
         this.number = number;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    @Override
+    public String toString() {
+        return "PrivateCustomer{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", fatherName='" + fatherName + '\'' +
+                ", dob=" + dob +
+                ", nationalID='" + nationalID + '\'' +
+                ", number='" + number + '\'' +
+                ", loans=" + loans +
+                '}';
     }
 }

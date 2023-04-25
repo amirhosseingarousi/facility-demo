@@ -41,6 +41,6 @@ public class InsertCustomerServlet extends HttpServlet {
     public String generateCustomerNumber() {
         Random random = new Random();
         int num = random.nextInt(999999);
-        return String.format("%06d", num);
+        return String.format("%16d", num);
     }
 }

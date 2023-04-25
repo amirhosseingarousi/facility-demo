@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet("/loan-file/proceed")
@@ -44,29 +45,41 @@ public class LoanFileServlet extends HttpServlet {
 
         if (req.getParameter("register") != null) {
             System.out.println("register called ...");
+            String customerNumber = req.getParameter("customerNumber").trim();
+            PrivateCustomer customer = privateCustomerDao.getCustomerByNumber(customerNumber);
+            System.out.println(customer);
 
-            String amount = req.getParameter("amount");
-            String period = req.getParameter("period");
+            double amount = Double.parseDouble(req.getParameter("amount"));
+            int period = Integer.parseInt(req.getParameter("period"));
             int loanId = Integer.parseInt(req.getParameter("loanId"));
 
             Loan loan = loanDao.getLoan(loanId);
             List<GrantCondition> conditions = loan.getConditions();
             System.out.println("conditions: " + conditions.size());
 
+            boolean flag = false;
+
             for (GrantCondition condition : conditions) {
-                System.out.println(condition);
+                int conditionMinPeriod = condition.getMinYear();
+                int conditionMaxPeriod = condition.getMaxYear();
+                double conditionMinAmount = condition.getMinAmount();
+                double conditionMaxAmount = condition.getMaxAmount();
+
+                if ((amount >= conditionMinAmount && amount <= conditionMaxAmount) &&
+                        (period >= conditionMinPeriod && period <= conditionMaxPeriod)) {
+                    flag = true;
+                    break;
+                }
             }
 
-            boolean amountFlag = false;
-            boolean periodFlag = false;
+            if (flag) {
+                customer.setLoans(Arrays.asList(loan));
+                privateCustomerDao.saveCustomer(customer);
+                System.out.println("Customer can get loan");
+            } else {
+                System.out.println("Sorry!");
+            }
 
-
-
-
-
-            System.out.println("Amount: " + amount);
-            System.out.println("Period: " + period);
-            System.out.println("Loan id: " + loanId);
         }
 
 

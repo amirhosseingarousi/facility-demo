@@ -85,6 +85,7 @@ public class GrantCondition {
         this.maxAmount = maxAmount;
     }
 
+
     @Override
     public String toString() {
         return "GrantCondition{" +

@@ -33,6 +33,7 @@ public class InsertLoanServlet extends HttpServlet {
         session.invalidate();
 
         Loan loan = new Loan(loanName, Double.parseDouble(loanRate));
+        loan.setConditions(conditions);
         loanService.addLoan(loan);
 
         res.sendRedirect("list");

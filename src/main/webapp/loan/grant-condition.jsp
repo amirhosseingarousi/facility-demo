@@ -39,7 +39,7 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="maxAmount">Max Contract Amount</label>
-                        <input type="text" class="form-control" name="maxAmount" id="maxAmount" placeholder="years" required>
+                        <input type="text" class="form-control" name="maxAmount" id="maxAmount" placeholder="amount" required>
                     </div>
                 </div>
 
