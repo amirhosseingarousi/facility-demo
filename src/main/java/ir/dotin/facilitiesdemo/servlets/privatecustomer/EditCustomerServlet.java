@@ -1,7 +1,7 @@
 package ir.dotin.facilitiesdemo.servlets.privatecustomer;
 
-import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
+import ir.dotin.facilitiesdemo.services.PrivateCustomerService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,17 +13,17 @@ import java.io.IOException;
 @WebServlet("/privatecustomer/edit")
 public class EditCustomerServlet extends HttpServlet {
 
-    private PrivateCustomerDao privateCustomerDao;
+    private PrivateCustomerService privateCustomerService;
 
     @Override
     public void init() {
-        privateCustomerDao = new PrivateCustomerDao();
+        privateCustomerService = new PrivateCustomerService();
     }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        PrivateCustomer existingCustomer = privateCustomerDao.getCustomer(id);
+        PrivateCustomer existingCustomer = privateCustomerService.getCustomerById(id);
         req.setAttribute("customer", existingCustomer);
         req.getRequestDispatcher("private-customer-form.jsp")
                 .forward(req, res);

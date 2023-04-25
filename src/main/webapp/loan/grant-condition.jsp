@@ -20,10 +20,10 @@
     </nav>
 </header>
 
-    <div class="container mb-5 col-7">
+    <div class="container mb-5 col-6">
         <div class="card">
             <div class="card-body">
-                <form action="insert" method="post">
+                <form action="addcondition" method="post">
                     <div>
                         <input type="hidden" name="loanName" value="<c:out value="${name}" />">
                         <input type="hidden" name="loanRate" value="<c:out value="${rate}" />">
@@ -34,32 +34,35 @@
                     </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="minAmount">Minimum Contract Amount</label>
+                        <label for="minAmount">Min Contract Amount</label>
                         <input type="text" class="form-control" name="minAmount" id="minAmount" placeholder="amount" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="maxAmount">Maximum Contract Amount</label>
+                        <label for="maxAmount">Max Contract Amount</label>
                         <input type="text" class="form-control" name="maxAmount" id="maxAmount" placeholder="years" required>
                     </div>
                 </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="minPeriod">Minimum Contract Period</label>
+                            <label for="minPeriod">Min Contract Period</label>
                             <input type="number" class="form-control" name="minPeriod" id="minPeriod" placeholder="years" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="maxPeriod">Maximum Contract Period</label>
+                            <label for="maxPeriod">Max Contract Period</label>
                             <input type="number" class="form-control" name="maxPeriod" id="maxPeriod" placeholder="years" required>
                         </div>
                     </div>
 
                     <div class="row mt-3">
-                        <button type="submit" name="save" value="condition" class="btn btn-success ml-4 mr-2">Save</button>
-                        <button type="submit" name="save" value="loan" class="btn btn-success">Register</button>
+                        <button type="submit" name="save" value="condition" class="btn btn-primary ml-2">Save</button>
+<%--                        <button type="submit" name="save" value="loan" class="btn btn-success">Register</button>--%>
+<%--                        <a href="<%=request.getContextPath()%>/loan/insert2" class="btn btn-success stretched-link">Register</a>--%>
                     </div>
                 </form>
             </div>
+            <a href="<%=request.getContextPath()%>/loan/insert" role="button" class="btn btn-success">Register</a>
+
         </div>
     </div>
 

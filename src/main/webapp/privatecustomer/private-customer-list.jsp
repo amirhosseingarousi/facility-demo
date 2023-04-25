@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
 
 <html>
 <head>
@@ -27,9 +26,10 @@
             <h3 class="text-center mb-4">List of Customers</h3>
             <hr>
             <div class="container text-left mt-5">
-                <a class="btn btn-success" href="<%=request.getContextPath()%>/privatecustomer/new" role="button">Add New Customer</a>
+                <a class="btn btn-success" href="private-customer-form.jsp" role="button">Add New Customer</a>
             </div>
         </div>
+<%--        href="<%=request.getContextPath()%>/privatecustomer/new"--%>
     </div>
     <table class="table table-striped center">
         <thead class="thead-dark">

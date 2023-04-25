@@ -48,7 +48,7 @@ public class LoanDao {
         Transaction transaction = null;
         Loan loan = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()){
-
+            transaction = session.beginTransaction();
             loan = session.get(Loan.class, id);
             transaction.commit();
         }

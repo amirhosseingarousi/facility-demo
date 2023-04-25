@@ -1,6 +1,7 @@
 package ir.dotin.facilitiesdemo.util;
 
 import ir.dotin.facilitiesdemo.models.GrantCondition;
+import ir.dotin.facilitiesdemo.models.LegalCustomer;
 import ir.dotin.facilitiesdemo.models.Loan;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
 import org.hibernate.SessionFactory;
@@ -33,6 +34,7 @@ public class HibernateUtil {
             configuration.addAnnotatedClass(PrivateCustomer.class);
             configuration.addAnnotatedClass(Loan.class);
             configuration.addAnnotatedClass(GrantCondition.class);
+            configuration.addAnnotatedClass(LegalCustomer.class);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                     .applySettings(configuration.getProperties())

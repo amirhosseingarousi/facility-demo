@@ -19,7 +19,7 @@ public class Loan {
     @Column(name = "rate")
     private double rate;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "loan_id")
     private List<GrantCondition> conditions = new ArrayList<>();
 

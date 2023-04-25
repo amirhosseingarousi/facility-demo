@@ -23,8 +23,6 @@ public class ListGrantConditionServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//        List<GrantCondition> grantConditions = grantConditionDao.getAllGrantCondition();
-//        req.setAttribute("listCondition", grantConditions);
         String loanName = req.getParameter("loanName");
         String loanRate = req.getParameter("loanRate");
 

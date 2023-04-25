@@ -21,16 +21,16 @@
     </nav>
 </header>
 
-    <div class="container">
+    <div class="container col-7">
         <div class="card">
             <div class="card-body">
                 <form action="proceed">
                     <div class="form-group row">
-                        <label for="customernumber" class="col-sm-2 col-form-label">Customer number</label>
+                        <label for="customernumber" class="col-sm-3 col-form-label">Customer number</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="customerNumber" id="customernumber" placeholder="Customer number">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-2">Confirm</button>
+                        <button type="submit" name="confirm" value="confirm" class="btn btn-primary mb-2">Confirm</button>
                     </div>
 
                     <c:if test="${customer != null}">
@@ -48,14 +48,26 @@
 
                     <c:if test="${loanList != null}">
                         <div class="form-group col-2">
-                            <label for="exampleFormControlSelect1">Loan select</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <label for="exampleFormControlSelect1">Loan</label>
+                            <select name="loanId" class="form-control" id="exampleFormControlSelect1">
                                 <c:forEach var="loan" items="${loanList}">
                                     <option value="${loan.id}"><c:out value="${loan.name}" /></option>
                                 </c:forEach>
                             </select>
                         </div>
+
+                        <div class="form-group form-row">
+                            <div class="col">
+                                <label for="amount">Amount</label>
+                                <input type="text" class="form-control" name="amount" id="amount" placeholder="amount" required>
+                            </div>
+                            <div class="col">
+                                <label for="period">Period</label>
+                                <input type="number" class="form-control" name="period" id="period" placeholder="period" required>
+                            </div>
+                        </div>
                     </c:if>
+                    <button type="submit" name="register" value="register" class="btn btn-success">Register</button>
                 </form>
             </div>
         </div>

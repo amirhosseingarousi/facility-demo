@@ -4,6 +4,7 @@ import ir.dotin.facilitiesdemo.dao.GrantConditionDao;
 import ir.dotin.facilitiesdemo.dao.LoanDao;
 import ir.dotin.facilitiesdemo.models.GrantCondition;
 import ir.dotin.facilitiesdemo.models.Loan;
+import ir.dotin.facilitiesdemo.services.LoanService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
@@ -14,30 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@WebServlet(value = "/loan/insert")
+@WebServlet(value = "/loan/addcondition")
 public class InsertGrantConditionServlet extends HttpServlet {
-
-    private GrantConditionDao grantConditionDao;
-    private LoanDao loanDao;
-
-    @Override
-    public void init() throws ServletException {
-        grantConditionDao = new GrantConditionDao();
-        loanDao = new LoanDao();
-    }
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-        if (req.getParameter("save").equals("condition")) {
-            saveGrantCondition(req, res);
-        } else if (req.getParameter("save").equals("loan")) {
-            registerLoan(req, res);
-        }
-
-    }
-
-    private void saveGrantCondition(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String loanName = req.getParameter("loanName");
         String loanRate = req.getParameter("loanRate");
         String conditionName = req.getParameter("conditionName");
@@ -53,6 +35,8 @@ public class InsertGrantConditionServlet extends HttpServlet {
             HttpSession session = req.getSession();
             conditions.add(grantCondition);
             session.setAttribute("listCondition", conditions);
+            session.setAttribute("loanName", loanName);
+            session.setAttribute("loanRate", loanRate);
         } else {
             HttpSession session = req.getSession();
             conditions = (List<GrantCondition>) session.getAttribute("listCondition");
@@ -63,19 +47,4 @@ public class InsertGrantConditionServlet extends HttpServlet {
         res.sendRedirect("grant-condition?loanName=" + loanName + "&loanRate=" + loanRate);
     }
 
-    private void registerLoan(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        List<GrantCondition> conditions = new ArrayList<>();
-        String loanName = req.getParameter("loanName");
-        String loanRate = req.getParameter("loanRate");
-
-        HttpSession session = req.getSession();
-        conditions = (List<GrantCondition>) session.getAttribute("listCondition");
-        session.invalidate();
-
-        Loan loan = new Loan(loanName, Double.parseDouble(loanRate));
-        loan.setConditions(conditions);
-        loanDao.saveLoan(loan);
-
-        res.sendRedirect("list");
-    }
 }

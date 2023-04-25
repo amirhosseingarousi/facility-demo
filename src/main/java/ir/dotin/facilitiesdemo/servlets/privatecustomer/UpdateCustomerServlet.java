@@ -2,6 +2,7 @@ package ir.dotin.facilitiesdemo.servlets.privatecustomer;
 
 import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
+import ir.dotin.facilitiesdemo.services.PrivateCustomerService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,11 +14,11 @@ import java.time.LocalDate;
 @WebServlet("/privatecustomer/update")
 public class UpdateCustomerServlet extends HttpServlet {
 
-    private PrivateCustomerDao privateCustomerDao;
+    private PrivateCustomerService privateCustomerService;
 
     @Override
     public void init() {
-        privateCustomerDao = new PrivateCustomerDao();
+        privateCustomerService = new PrivateCustomerService();
     }
 
     @Override
@@ -29,10 +30,9 @@ public class UpdateCustomerServlet extends HttpServlet {
         LocalDate dob = LocalDate.parse(req.getParameter("dob"));;
         String nationalID = req.getParameter("nationalID");
         String number = req.getParameter("customerNumber");
-        System.out.println("number is: " + number);
 
         PrivateCustomer customer = new PrivateCustomer(id, firstName, lastName, fatherName, dob, nationalID, number);
-        privateCustomerDao.updateCustomer(customer);
+        privateCustomerService.updateCustomer(customer);
         res.sendRedirect("list");
     }
 }

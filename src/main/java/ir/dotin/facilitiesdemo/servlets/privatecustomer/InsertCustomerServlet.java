@@ -2,6 +2,7 @@ package ir.dotin.facilitiesdemo.servlets.privatecustomer;
 
 import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
+import ir.dotin.facilitiesdemo.services.PrivateCustomerService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -16,11 +17,11 @@ import java.util.Random;
 @WebServlet("/privatecustomer/insert")
 public class InsertCustomerServlet extends HttpServlet {
 
-    private PrivateCustomerDao privateCustomerDao;
+    private PrivateCustomerService privateCustomerService;
 
     @Override
     public void init(ServletConfig config) {
-        privateCustomerDao = new PrivateCustomerDao();
+        privateCustomerService = new PrivateCustomerService();
     }
 
     @Override
@@ -33,7 +34,7 @@ public class InsertCustomerServlet extends HttpServlet {
 
         PrivateCustomer customer = new PrivateCustomer(firstName, lastName, fatherName, dob, nationalID);
         customer.setNumber(generateCustomerNumber());
-        privateCustomerDao.saveCustomer(customer);
+        privateCustomerService.addCustomer(customer);
         res.sendRedirect("list");
     }
 
