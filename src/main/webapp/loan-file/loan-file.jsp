@@ -67,7 +67,10 @@
                             </div>
                         </div>
                     </c:if>
-                    <button type="submit" name="register" value="register" class="btn btn-success">Register</button>
+
+                    <c:if test="${customer != null}">
+                        <button type="submit" name="register" value="register" class="btn btn-success">Register</button>
+                    </c:if>
                 </form>
             </div>
         </div>

@@ -66,7 +66,12 @@
         </div>
     </div>
 
-    <div class="container col-8">
+    <c:if test="${listCondition.size() == 0}">
+        <h3 class="text-center">There is no condition</h3>
+    </c:if>
+
+    <c:if test="${listCondition.size() != 0}">
+    <div class="container col-7">
         <table class="table table-striped center">
             <thead class="thead-dark">
                 <tr>
@@ -101,5 +106,6 @@
             </tbody>
         </table>
     </div>
+    </c:if>
 </body>
 </html>

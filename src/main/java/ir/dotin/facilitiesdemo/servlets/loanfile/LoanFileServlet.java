@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -55,7 +56,6 @@ public class LoanFileServlet extends HttpServlet {
 
             Loan loan = loanDao.getLoan(loanId);
             List<GrantCondition> conditions = loan.getConditions();
-            System.out.println("conditions: " + conditions.size());
 
             boolean flag = false;
 
@@ -73,9 +73,12 @@ public class LoanFileServlet extends HttpServlet {
             }
 
             if (flag) {
-                customer.setLoans(Arrays.asList(loan));
-                privateCustomerDao.saveCustomer(customer);
-                System.out.println("Customer can get loan");
+                List<Loan> loans = customer.getLoans();
+                System.out.println("Customer loans: " + loans.size());
+                loans.add(loan);
+                customer.setLoans(loans);
+                privateCustomerDao.updateCustomer(customer);
+                res.sendRedirect("loan-file.jsp");
             } else {
                 System.out.println("Sorry!");
             }

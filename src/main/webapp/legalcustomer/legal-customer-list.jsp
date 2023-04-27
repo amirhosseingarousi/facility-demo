@@ -31,6 +31,11 @@
     </div>
   </div>
 
+  <c:if test="${listCustomer.size() == 0}">
+    <h3 class="text-center">There is no customer</h3>
+  </c:if>
+
+  <c:if test="${listCustomer.size() != 0}">
   <table class="table table-striped center">
     <thead class="thead-dark">
       <tr>
@@ -65,6 +70,7 @@
     </c:forEach>
     </tbody>
   </table>
+  </c:if>
 </div>
 </body>
 </html>
