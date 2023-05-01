@@ -2,6 +2,7 @@ package ir.dotin.facilitiesdemo.dao;
 
 import ir.dotin.facilitiesdemo.util.HibernateUtil;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -16,8 +17,12 @@ public class PrivateCustomerDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             transaction = session.beginTransaction();
-            session.save(customer);
-            transaction.commit();
+            try {
+                session.save(customer);
+                transaction.commit();
+            } catch (HibernateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -28,6 +33,8 @@ public class PrivateCustomerDao {
             transaction = session.beginTransaction();
             session.update(customer);
             transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
         }
     }
 

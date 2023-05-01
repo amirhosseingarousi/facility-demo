@@ -5,6 +5,12 @@
 <head>
     <title>User Management Application</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js">
+    </script>
+
+    <!-- Including Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+    </script>
 </head>
 <body>
     <header>
@@ -19,6 +25,21 @@
         </div>
     </nav>
     </header>
+
+    <c:if test="${success != null}">
+        <div id="success-alert" class="alert alert-success w-50 ml-3" role="alert">
+            <strong>Success!</strong> ${success}
+            <c:remove var="success" scope="session" />
+        </div>
+    </c:if>
+
+    <c:if test="${fail != null}">
+        <div id="success-alert" class="alert alert-danger w-50 ml-3" role="alert">
+                ${fail}
+            <c:remove var="fail" scope="session" />
+        </div>
+    </c:if>
+
 
 <div class="container col-9">
     <div class="row">
@@ -73,5 +94,11 @@
     </table>
     </c:if>
 </div>
+
+<script type="text/javascript">
+    $("#success-alert").fadeTo(3000, 500).slideUp(500, function(){
+        $("#success-alert").slideUp(500);
+    });
+</script>
 </body>
 </html>

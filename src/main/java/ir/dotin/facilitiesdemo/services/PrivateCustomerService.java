@@ -2,6 +2,7 @@ package ir.dotin.facilitiesdemo.services;
 
 import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
+import org.hibernate.JDBCException;
 
 import java.util.List;
 

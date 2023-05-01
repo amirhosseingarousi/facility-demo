@@ -34,8 +34,18 @@ public class InsertCustomerServlet extends HttpServlet {
 
         PrivateCustomer customer = new PrivateCustomer(firstName, lastName, fatherName, dob, nationalID);
         customer.setNumber(generateCustomerNumber());
-        privateCustomerService.addCustomer(customer);
-        res.sendRedirect("list");
+        try {
+            privateCustomerService.addCustomer(customer);
+            String message = "New Customer successfully added";
+            req.getSession().setAttribute("success", message);
+            res.sendRedirect("list");
+        } catch (Exception e) {
+            String message = "Something went wrong!";
+            req.getSession().setAttribute("fail", message);
+            res.sendRedirect("list");
+        }
+//        privateCustomerService.addCustomer(customer);
+//        res.sendRedirect("list");
     }
 
     public String generateCustomerNumber() {
