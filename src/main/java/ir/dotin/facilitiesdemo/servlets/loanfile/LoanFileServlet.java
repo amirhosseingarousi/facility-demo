@@ -78,9 +78,11 @@ public class LoanFileServlet extends HttpServlet {
                 loans.add(loan);
                 customer.setLoans(loans);
                 privateCustomerDao.updateCustomer(customer);
+                req.getSession().setAttribute("success", "Customer register loan successfully");
                 res.sendRedirect("loan-file.jsp");
             } else {
-                System.out.println("Sorry!");
+                req.getSession().setAttribute("fail", "Customer request reject");
+                res.sendRedirect("loan-file.jsp");
             }
 
         }

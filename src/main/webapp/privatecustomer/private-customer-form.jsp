@@ -27,7 +27,7 @@
                 <form action="update">
             </c:if>
              <c:if test="${customer == null}">
-                <form action="insert">
+                <form name="customerForm" onsubmit="return validateNationalId()" action="insert">
              </c:if>
 
              <caption>
@@ -78,6 +78,42 @@
         </div>
     </div>
 </div>
-<script src=""></script>
+<script>
+    function validateNationalId() {
+        let str = document.forms["customerForm"]["nationalID"].value;
+
+        let flagOne = false
+        if(str.length === 10) {
+            flagOne = true
+        }
+
+        let flagTwo = false;
+        let sum = 0;
+        let controlNum = Number(str.charAt(str.length-1))
+
+        alert("control num: " + controlNum)
+        for (let i = 0; i < str.length - 1; i++) {
+            let num = Number(str.charAt(i));
+            alert("num: " + num)
+            num *= (10 - i)
+            sum += num;
+        }
+        let remainder = sum % 11
+        alert("remainder: " + remainder)
+        if (remainder < 2) {
+            if (remainder === controlNum) {
+                flagTwo = true;
+            }
+        } else if(controlNum === (11 - remainder)) {
+            flagTwo = true;
+        }
+
+        if (!flagOne || !flagTwo) {
+            alert("National code is invalid")
+            return false;
+        }
+
+    }
+</script>
 </body>
 </html>
