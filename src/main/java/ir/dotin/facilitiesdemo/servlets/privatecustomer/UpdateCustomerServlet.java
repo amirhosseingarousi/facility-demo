@@ -27,12 +27,13 @@ public class UpdateCustomerServlet extends HttpServlet {
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         String fatherName = req.getParameter("fatherName");
-        LocalDate dob = LocalDate.parse(req.getParameter("dob"));;
+        LocalDate dob = LocalDate.parse(req.getParameter("dob"));
         String nationalID = req.getParameter("nationalID");
         String number = req.getParameter("customerNumber");
 
         PrivateCustomer customer = new PrivateCustomer(id, firstName, lastName, fatherName, dob, nationalID, number);
         privateCustomerService.updateCustomer(customer);
+        req.getSession().setAttribute("success", "Customer updated successfully");
         res.sendRedirect("list");
     }
 }

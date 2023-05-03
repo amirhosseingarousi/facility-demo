@@ -31,6 +31,7 @@ public class UpdateLegalCustomerServlet extends HttpServlet {
 
         LegalCustomer customer = new LegalCustomer(id, name, registerDate, code, number);
         legalCustomerService.updateCustomer(customer);
+        req.getSession().setAttribute("success", "Customer updated successfully");
         res.sendRedirect("list");
     }
 }

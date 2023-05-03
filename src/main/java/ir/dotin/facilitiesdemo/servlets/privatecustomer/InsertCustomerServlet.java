@@ -3,6 +3,7 @@ package ir.dotin.facilitiesdemo.servlets.privatecustomer;
 import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
 import ir.dotin.facilitiesdemo.services.PrivateCustomerService;
+import org.hibernate.HibernateException;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -39,7 +40,7 @@ public class InsertCustomerServlet extends HttpServlet {
             String message = "New Customer successfully added";
             req.getSession().setAttribute("success", message);
             res.sendRedirect("list");
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             String message = "Something went wrong!";
             req.getSession().setAttribute("fail", message);
             res.sendRedirect("list");

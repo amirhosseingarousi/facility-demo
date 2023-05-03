@@ -5,6 +5,12 @@
 <head>
   <title>Legal Customer Management</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js">
+  </script>
+
+  <!-- Including Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js">
+  </script>
 </head>
 <body>
 <header>
@@ -16,9 +22,23 @@
           <a class="nav-link" href="/FacilitiesDemo_war_exploded/">Home <span class="sr-only">(current)</span></a>
         </li>
       </ul>
+
+      <form action="search" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" name="name" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
   </nav>
 </header>
+
+<div class="container">
+<c:if test="${success != null}">
+  <div id="success-alert" class="alert alert-success w-50 ml-3" role="alert">
+    <strong>Success!</strong>  ${success}
+    <c:remove var="success" scope="session" />
+  </div>
+</c:if>
+</div>
 
 <div class="container col-8">
   <div class="row">
@@ -72,5 +92,11 @@
   </table>
   </c:if>
 </div>
+
+<script type="text/javascript">
+  $("#success-alert").fadeTo(3000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
+  });
+</script>
 </body>
 </html>

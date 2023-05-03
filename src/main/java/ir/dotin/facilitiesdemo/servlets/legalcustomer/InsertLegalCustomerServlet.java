@@ -30,6 +30,8 @@ public class InsertLegalCustomerServlet extends HttpServlet {
         LegalCustomer customer = new LegalCustomer(name, registerDate, code);
         customer.setNumber(legalCustomerService.generateCustomerNumber());
         legalCustomerService.addCustomer(customer);
+        String message = "New Customer successfully added";
+        req.getSession().setAttribute("success", message);
         res.sendRedirect("list");
     }
 }

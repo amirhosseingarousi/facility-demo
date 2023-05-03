@@ -22,13 +22,18 @@
                     <a class="nav-link" href="/FacilitiesDemo_war_exploded/">Home <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
+
+            <form action="search" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" name="firstName" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
     </nav>
     </header>
 
     <c:if test="${success != null}">
         <div id="success-alert" class="alert alert-success w-50 ml-3" role="alert">
-            <strong>Success!</strong> ${success}
+            <strong>Success!</strong>  ${success}
             <c:remove var="success" scope="session" />
         </div>
     </c:if>

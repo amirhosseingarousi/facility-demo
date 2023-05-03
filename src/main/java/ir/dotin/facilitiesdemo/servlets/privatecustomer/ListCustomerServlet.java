@@ -23,8 +23,10 @@ public class ListCustomerServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
         List<PrivateCustomer> customers = privateCustomerService.getAllCustomer();
         req.setAttribute("listCustomer", customers);
         req.getRequestDispatcher("private-customer-list.jsp").forward(req, res);
+
     }
 }
