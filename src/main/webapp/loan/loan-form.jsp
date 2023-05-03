@@ -23,15 +23,22 @@
 <div class="container col-5">
     <div class="card">
         <div class="card-body">
-            <form action="grant-condition">
+            <c:if test="${loan != null}">
+                <form action="">
+            </c:if>
+            <c:if test="${loan == null}">
+                <form action="grant-condition">
+            </c:if>
+<%--            <form action="grant-condition">--%>
+                <input type="hidden" name="id" value="<c:out value="${loan.id}" />">
                 <div class="form-group form-row">
                     <div class="col">
                         <label for="loanName">Loan name</label>
-                        <input type="text" class="form-control" name="loanName" id="loanName" placeholder="name" required>
+                        <input type="text" value="${loan.name}" class="form-control" name="loanName" id="loanName" placeholder="name" required>
                     </div>
                     <div class="col">
                         <label for="loanRate">Loan rate</label>
-                        <input type="number" step="any" class="form-control" name="loanRate" id="loanRate" placeholder="rate" required>
+                        <input type="number" value="${loan.rate}" step="any" class="form-control" name="loanRate" id="loanRate" placeholder="rate" required>
                     </div>
                 </div>
 

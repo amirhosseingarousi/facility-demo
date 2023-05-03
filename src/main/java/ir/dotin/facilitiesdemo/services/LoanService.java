@@ -16,7 +16,15 @@ public class LoanService {
         return loanDao.getAllLoan();
     }
 
+    public Loan getLoanById(int id) {
+        return loanDao.getLoan(id);
+    }
+
     public void addLoan(Loan loan) {
         loanDao.saveLoan(loan);
+    }
+
+    public void deleteLoanById(int id) {
+        loanDao.deleteLoan(id);
     }
 }

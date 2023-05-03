@@ -55,8 +55,8 @@
                     <c:out value="${loan.rate}"/>
                 </td>
                 <td class="text-center">
-                    <a href="edit?id=<c:out value="${customer.id}" />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="delete?id=<c:out value="${customer.id}" />">Delete</a>
+                    <a href="edit?id=<c:out value="${loan.id}" />">Edit</a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="delete?id=<c:out value="${loan.id}" />">Delete</a>
                 </td>
             </tr>
         </c:forEach>
