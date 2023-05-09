@@ -1,4 +1,4 @@
-package ir.dotin.facilitiesdemo.dao;
+package ir.dotin.facilitiesdemo.repository;
 
 import ir.dotin.facilitiesdemo.util.HibernateUtil;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
@@ -98,6 +98,17 @@ public class PrivateCustomerDao {
 
             customers = session.createQuery("from PrivateCustomer").getResultList();
             transaction.commit();
+        }
+        return customers;
+    }
+
+    public List<PrivateCustomer> searchCustomerByName(String name) {
+        String hql = "from PrivateCustomer c where c.firstName like :name";
+        List<PrivateCustomer> customers = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query query = session.createQuery(hql);
+            query.setParameter("name", "%" + name + "%");
+            customers = query.list();
         }
         return customers;
     }

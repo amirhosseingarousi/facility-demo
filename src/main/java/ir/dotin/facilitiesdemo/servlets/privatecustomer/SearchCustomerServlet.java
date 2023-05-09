@@ -1,6 +1,7 @@
 package ir.dotin.facilitiesdemo.servlets.privatecustomer;
 
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
+import ir.dotin.facilitiesdemo.repository.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.services.PrivateCustomerService;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,8 @@ public class SearchCustomerServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String name = req.getParameter("firstName").trim();
-        List<PrivateCustomer> customers = privateCustomerService.searchCustomerByName(name);
+        List<PrivateCustomer> customers = privateCustomerService.searchCustomerByFirstName(name);
+//        List<PrivateCustomer> customers = privateCustomerService.searchCustomerByName(name);
         req.setAttribute("listCustomer", customers);
         req.getRequestDispatcher("private-customer-list.jsp").forward(req, res);
 

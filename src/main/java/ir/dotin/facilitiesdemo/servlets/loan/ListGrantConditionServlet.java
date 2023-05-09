@@ -1,7 +1,6 @@
 package ir.dotin.facilitiesdemo.servlets.loan;
 
-import ir.dotin.facilitiesdemo.dao.GrantConditionDao;
-import ir.dotin.facilitiesdemo.models.GrantCondition;
+import ir.dotin.facilitiesdemo.repository.GrantConditionDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/loan/grant-condition")
 public class ListGrantConditionServlet extends HttpServlet {

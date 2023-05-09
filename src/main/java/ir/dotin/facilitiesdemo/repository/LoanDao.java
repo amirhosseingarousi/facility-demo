@@ -1,6 +1,5 @@
-package ir.dotin.facilitiesdemo.dao;
+package ir.dotin.facilitiesdemo.repository;
 
-import ir.dotin.facilitiesdemo.models.PrivateCustomer;
 import ir.dotin.facilitiesdemo.util.HibernateUtil;
 import ir.dotin.facilitiesdemo.models.Loan;
 import org.hibernate.Session;

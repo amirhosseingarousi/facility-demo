@@ -1,6 +1,6 @@
 package ir.dotin.facilitiesdemo.services;
 
-import ir.dotin.facilitiesdemo.dao.LegalCustomerDao;
+import ir.dotin.facilitiesdemo.repository.LegalCustomerDao;
 import ir.dotin.facilitiesdemo.models.LegalCustomer;
 
 import java.util.ArrayList;
@@ -35,15 +35,8 @@ public class LegalCustomerService {
         legalCustomerDao.deleteCustomer(id);
     }
 
-    public List<LegalCustomer> searchCustomerByName(String name) {
-        List<LegalCustomer> allCustomer = getAllCustomer();
-        List<LegalCustomer> customers = new ArrayList<>();
-        for (LegalCustomer customer : allCustomer) {
-            if (customer.getCompanyName().contains(name)) {
-                customers.add(customer);
-            }
-        }
-        return customers;
+    public List<LegalCustomer> searchCompanyByName(String name) {
+        return legalCustomerDao.searchCustomerByName(name);
     }
 
     public String generateCustomerNumber() {

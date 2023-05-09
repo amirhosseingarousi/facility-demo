@@ -24,7 +24,7 @@ public class SearchLegalCustomerServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String name = req.getParameter("name").trim();
-        List<LegalCustomer> customers = legalCustomerService.searchCustomerByName(name);
+        List<LegalCustomer> customers = legalCustomerService.searchCompanyByName(name);
         req.setAttribute("listCustomer", customers);
         req.getRequestDispatcher("legal-customer-list.jsp").forward(req, res);
     }

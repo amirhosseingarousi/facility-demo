@@ -24,7 +24,7 @@
     <div class="card">
         <div class="card-body">
             <c:if test="${customer != null}">
-                <form action="update">
+                <form name="customerForm" onsubmit="return validateNationalId()" action="update">
             </c:if>
              <c:if test="${customer == null}">
                 <form name="customerForm" onsubmit="return validateNationalId()" action="insert">
@@ -91,15 +91,13 @@
         let sum = 0;
         let controlNum = Number(str.charAt(str.length-1))
 
-        alert("control num: " + controlNum)
         for (let i = 0; i < str.length - 1; i++) {
             let num = Number(str.charAt(i));
-            alert("num: " + num)
             num *= (10 - i)
             sum += num;
         }
+
         let remainder = sum % 11
-        alert("remainder: " + remainder)
         if (remainder < 2) {
             if (remainder === controlNum) {
                 flagTwo = true;

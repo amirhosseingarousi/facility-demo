@@ -1,8 +1,7 @@
 package ir.dotin.facilitiesdemo.services;
 
-import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
+import ir.dotin.facilitiesdemo.repository.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.models.PrivateCustomer;
-import org.hibernate.JDBCException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +26,12 @@ public class PrivateCustomerService {
         privateCustomerDao.updateCustomer(customer);
     }
 
-    public List<PrivateCustomer> searchCustomerByName(String name) {
-        List<PrivateCustomer> allCustomers = getAllCustomer();
-        List<PrivateCustomer> customers = new ArrayList<>();
-        for (PrivateCustomer customer : allCustomers) {
-            if (customer.getFirstName().contains(name)) {
-                customers.add(customer);
-            }
-        }
-        return customers;
+    public PrivateCustomer getCustomerByNumber(String number) {
+        return privateCustomerDao.getCustomerByNumber(number);
+    }
+
+    public List<PrivateCustomer> searchCustomerByFirstName(String name) {
+        return privateCustomerDao.searchCustomerByName(name);
     }
 
     public void addCustomer(PrivateCustomer customer) {

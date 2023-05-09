@@ -1,9 +1,10 @@
-package ir.dotin.facilitiesdemo.dao;
+package ir.dotin.facilitiesdemo.repository;
 
 import ir.dotin.facilitiesdemo.models.LegalCustomer;
 import ir.dotin.facilitiesdemo.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -61,6 +62,18 @@ public class LegalCustomerDao {
         }
         return customers;
     }
+
+    public List<LegalCustomer> searchCustomerByName(String name) {
+        String hql = "from LegalCustomer c where c.companyName like :name";
+        List<LegalCustomer> customers = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()){
+            Query query = session.createQuery(hql);
+            query.setParameter("name", "%" + name + "%");
+            customers = query.list();
+        }
+        return customers;
+    }
+
 
 
 }

@@ -1,6 +1,6 @@
 package ir.dotin.facilitiesdemo.services;
 
-import ir.dotin.facilitiesdemo.dao.LoanDao;
+import ir.dotin.facilitiesdemo.repository.LoanDao;
 import ir.dotin.facilitiesdemo.models.Loan;
 
 import java.util.List;

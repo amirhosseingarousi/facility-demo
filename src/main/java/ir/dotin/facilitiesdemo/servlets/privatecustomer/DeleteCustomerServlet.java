@@ -1,6 +1,5 @@
 package ir.dotin.facilitiesdemo.servlets.privatecustomer;
 
-import ir.dotin.facilitiesdemo.dao.PrivateCustomerDao;
 import ir.dotin.facilitiesdemo.services.PrivateCustomerService;
 
 import javax.servlet.ServletException;

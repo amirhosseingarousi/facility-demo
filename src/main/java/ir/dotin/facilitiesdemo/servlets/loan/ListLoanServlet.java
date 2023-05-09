@@ -1,6 +1,5 @@
 package ir.dotin.facilitiesdemo.servlets.loan;
 
-import ir.dotin.facilitiesdemo.dao.LoanDao;
 import ir.dotin.facilitiesdemo.models.Loan;
 import ir.dotin.facilitiesdemo.services.LoanService;
 

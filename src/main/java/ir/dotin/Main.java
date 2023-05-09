@@ -1,7 +1,7 @@
 package ir.dotin;
 
-import ir.dotin.facilitiesdemo.dao.GrantConditionDao;
-import ir.dotin.facilitiesdemo.dao.LoanDao;
+import ir.dotin.facilitiesdemo.repository.GrantConditionDao;
+import ir.dotin.facilitiesdemo.repository.LoanDao;
 import ir.dotin.facilitiesdemo.models.GrantCondition;
 import ir.dotin.facilitiesdemo.models.Loan;
 

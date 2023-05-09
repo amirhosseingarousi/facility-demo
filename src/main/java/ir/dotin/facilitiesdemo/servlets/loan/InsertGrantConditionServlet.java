@@ -1,18 +1,12 @@
 package ir.dotin.facilitiesdemo.servlets.loan;
 
-import ir.dotin.facilitiesdemo.dao.GrantConditionDao;
-import ir.dotin.facilitiesdemo.dao.LoanDao;
 import ir.dotin.facilitiesdemo.models.GrantCondition;
-import ir.dotin.facilitiesdemo.models.Loan;
-import ir.dotin.facilitiesdemo.services.LoanService;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(value = "/loan/addcondition")
